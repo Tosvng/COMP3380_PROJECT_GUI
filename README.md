@@ -1,7 +1,8 @@
 # COMP3380_PROJECT_GUI
  -all class files are in untitled -> scr
 ## SETTING UP THE DATA STUDIO DEPENDENCIES IN INTELLIJ
- -to run you have to add the db2jacc4.jar to the dependencies 
+ -to connect to the DB2 database you have to add the db2jacc4.jar to the project dependencies 
+ 
  -if you're using intellij:
 1. click on file in the menu tab
 2. then project structure
