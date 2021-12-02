@@ -1,0 +1,114 @@
+CREATE TABLE movie (
+	movieID	INTEGER NOT NULL,
+	title	VARCHAR(20),
+	releaseDate INTEGER,
+	status	VARCHAR(10),
+	budget INTEGER,
+	revenue INTEGER,
+	PRIMARY KEY(movieID)
+);
+
+CREATE TABLE genre (
+	genreID	INTEGER NOT NULL,
+	genreName	VARCHAR(20),
+	PRIMARY KEY(genreID)
+);
+
+CREATE TABLE character (
+	characterID	INTEGER NOT NULL,
+	characterName	VARCHAR(20),
+	PRIMARY KEY(characterID)
+);
+
+CREATE TABLE location (
+	country	VARCHAR(2) NOT NULL,
+	--countryName	VARCHAR(20),
+	PRIMARY KEY(countryCode)
+);
+
+CREATE TABLE company (
+	companyID	INTEGER NOT NULL,
+	companyName	VARCHAR(20),
+	PRIMARY KEY(companyID)
+);
+
+CREATE TABLE department (
+	departmentName	VARCHAR(20) NOT NULL,
+	PRIMARY KEY(departmentName)
+);
+
+CREATE TABLE actor (
+	actorID	INTEGER NOT NULL,
+	actorName	VARCHAR(20),
+	PRIMARY KEY(actorID)
+);
+
+CREATE TABLE staff (
+	staffID	INTEGER NOT NULL,
+	staffName	VARCHAR(20),
+	PRIMARY KEY(staffID)
+);
+
+CREATE TABLE category (
+	movieID	INTEGER NOT NULL,
+	genreID	INTEGER NOT NULL,
+	PRIMARY KEY(movieID,genreID),
+	FOREIGN KEY(movieID) REFERENCES movie(movieID),
+	FOREIGN KEY(genreID) REFERENCES genre(genreID)
+);
+
+CREATE TABLE produced_by (
+	movieID	INTEGER NOT NULL,
+	companyID	INTEGER NOT NULL,
+	PRIMARY KEY(movieID,genreID),
+	FOREIGN KEY(movieID) REFERENCES movie(movieID),
+	FOREIGN KEY(companyID) REFERENCES company(companyID)
+);
+
+CREATE TABLE produced_in (
+	movieID	INTEGER NOT NULL,
+	country	VARCHAR(2) NOT NULL,
+	PRIMARY KEY(movieID,genreID),
+	FOREIGN KEY(movieID) REFERENCES movie(movieID),
+	FOREIGN KEY(country) REFERENCES location(country)
+);
+
+CREATE TABLE appears (
+	movieID	INTEGER NOT NULL,
+	characterID	INTEGER NOT NULL,
+	PRIMARY KEY(movieID,genreID),
+	FOREIGN KEY(movieID) REFERENCES movie(movieID),
+	FOREIGN KEY(characterID) REFERENCES character(characterID)
+);
+
+CREATE TABLE plays (
+	actorID	INTEGER NOT NULL,
+	characterID	INTEGER NOT NULL,
+	PRIMARY KEY(actorID,characterID),
+	FOREIGN KEY(actorID) REFERENCES actor(actorID),
+	FOREIGN KEY(characterID) REFERENCES character(characterID)
+);
+
+CREATE TABLE cast (
+	movieID	INTEGER NOT NULL,
+	actorID	INTEGER NOT NULL,
+	PRIMARY KEY(movieID,actorID),
+	FOREIGN KEY(movieID) REFERENCES movie(movieID),
+	FOREIGN KEY(actorID) REFERENCES actor(actorID)
+);
+
+CREATE TABLE works (
+	movieID	INTEGER NOT NULL,
+	staffID	INTEGER NOT NULL,
+	PRIMARY KEY(movieID,staffID),
+	FOREIGN KEY(movieID) REFERENCES movie(movieID),
+	FOREIGN KEY(staffID) REFERENCES staff(staffID)
+);
+
+CREATE TABLE belong (
+	departmentName	VARCHAR(20) NOT NULL,
+	staffID	INTEGER NOT NULL,
+	PRIMARY KEY(departmentName,staffID),
+	FOREIGN KEY(departmentName) REFERENCES department(departmentName),
+	FOREIGN KEY(staffID) REFERENCES staff(staffID)
+);
