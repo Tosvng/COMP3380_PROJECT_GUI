@@ -23,7 +23,7 @@ CREATE TABLE character (
 CREATE TABLE location (
 	country	VARCHAR(2) NOT NULL,
 	--countryName	VARCHAR(20),
-	PRIMARY KEY(countryCode)
+	PRIMARY KEY(country)
 );
 
 CREATE TABLE company (
@@ -60,7 +60,7 @@ CREATE TABLE category (
 CREATE TABLE produced_by (
 	movieID	INTEGER NOT NULL,
 	companyID	INTEGER NOT NULL,
-	PRIMARY KEY(movieID,genreID),
+	PRIMARY KEY(movieID,companyID),
 	FOREIGN KEY(movieID) REFERENCES movie(movieID),
 	FOREIGN KEY(companyID) REFERENCES company(companyID)
 );
@@ -68,7 +68,7 @@ CREATE TABLE produced_by (
 CREATE TABLE produced_in (
 	movieID	INTEGER NOT NULL,
 	country	VARCHAR(2) NOT NULL,
-	PRIMARY KEY(movieID,genreID),
+	PRIMARY KEY(movieID,country),
 	FOREIGN KEY(movieID) REFERENCES movie(movieID),
 	FOREIGN KEY(country) REFERENCES location(country)
 );
@@ -76,7 +76,7 @@ CREATE TABLE produced_in (
 CREATE TABLE appears (
 	movieID	INTEGER NOT NULL,
 	characterID	INTEGER NOT NULL,
-	PRIMARY KEY(movieID,genreID),
+	PRIMARY KEY(movieID,characterID),
 	FOREIGN KEY(movieID) REFERENCES movie(movieID),
 	FOREIGN KEY(characterID) REFERENCES character(characterID)
 );
