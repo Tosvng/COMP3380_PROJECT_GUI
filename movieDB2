@@ -28,7 +28,7 @@ CREATE TABLE location (
 
 CREATE TABLE company (
 	companyID	INTEGER NOT NULL,
-	companyName	VARCHAR(20),
+	companyName	VARCHAR(100),
 	PRIMARY KEY(companyID)
 );
 
