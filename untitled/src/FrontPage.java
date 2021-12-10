@@ -27,6 +27,13 @@ public class FrontPage extends JFrame {
                 insertPage.setVisible(true);
             }
         });
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SearchPage searchPage = new SearchPage("Search for a record");
+                searchPage.setVisible(true);
+            }
+        });
     }
 
     public static void main (String[] args){

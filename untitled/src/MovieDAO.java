@@ -136,11 +136,11 @@ public class MovieDAO {
         }
     }
 
-    public void insertToCrew(String cID, String name){
+    public void insertToStaff(String cID, String name){
         int cIDInt = Integer.parseInt(cID);
 
         try{
-            preState = connect.prepareStatement("INSERT INTO crew VALUES (?,?)");
+            preState = connect.prepareStatement("INSERT INTO staff VALUES (?,?)");
             preState.setInt(1, cIDInt);
             preState.setString(2, name);
             intRes = preState.executeUpdate();
@@ -150,18 +150,35 @@ public class MovieDAO {
         }
     }
 
-    public void insertToDept(String dID, String name){
-        int dIDInt = Integer.parseInt(dID);
+    public void insertToActor(String cID, String name){
+        int cIDInt = Integer.parseInt(cID);
 
         try{
-            preState = connect.prepareStatement("INSERT INTO departments VALUES (?,?)");
-            preState.setInt(1, dIDInt);
+            preState = connect.prepareStatement("INSERT INTO actor VALUES (?,?)");
+            preState.setInt(1, cIDInt);
             preState.setString(2, name);
             intRes = preState.executeUpdate();
         }
         catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void insertToDept(String name){
+
+
+        try{
+            preState = connect.prepareStatement("INSERT INTO department VALUES (?)");
+            preState.setString(1, name);
+            intRes = preState.executeUpdate();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getConnect(){
+        return connect;
     }
 
 }
