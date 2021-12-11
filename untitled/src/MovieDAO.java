@@ -22,6 +22,9 @@ public class MovieDAO {
         }
     }
 
+
+
+
     public void insertToMovies(String mID, String title, String date, String runtime, String budget){
         int runtimeInt;
         int budgetInt;

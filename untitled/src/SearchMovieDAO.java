@@ -12,6 +12,7 @@ public class SearchMovieDAO {
     private PreparedStatement preState;
     private ResultSet res;
     private int intRes;
+    private  ArrayList<Result> list;
 
 
     public SearchMovieDAO(){
@@ -34,7 +35,7 @@ public class SearchMovieDAO {
     runs the sql query then returns the query result as an arraylist
      */
     public ArrayList<Result> showAllMovies(){
-        ArrayList<Result> list = new ArrayList<Result>();
+        list = new ArrayList<Result>();
         state=null;
         try{
             state = connect.createStatement();
@@ -44,9 +45,58 @@ public class SearchMovieDAO {
             //convert each row from the query to a result object
             //then add each row to an array list then return the array list
             while (res.next()){
-                //Result row = convertTwoColumn(res);
-                //list.add(row);
-                System.out.println(res);
+                Result row = convertTwoColumn(res);
+                list.add(row);
+
+            }
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    //movies join actors---------------------------------------------------
+    public ArrayList<Result> moviesXactors(){
+        list = new ArrayList<Result>();
+        state=null;
+        try{
+            state = connect.createStatement();
+            res = state.executeQuery("SELECT movie.movieID,title,actorName FROM cast inner join movie on cast.movieId = movie.movieID" +
+                    " inner join actor on cast.actorid = actor.actorid");
+            //System.out.println("done!");
+
+            //convert each row from the query to a result object
+            //then add each row to an array list then return the array list
+            while (res.next()){
+                Result row = convertThreeColumn(res);
+                list.add(row);
+
+            }
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public ArrayList<Result> producedBy(){
+        list = new ArrayList<Result>();
+        state=null;
+        try{
+            state = connect.createStatement();
+            res = state.executeQuery("SELECT movie.movieID,title,companyName FROM produced_by " +
+                    "inner join movie on produced_by.movieID= movie.movieID inner join company on  company.companyID = produced_by.companyID");
+            //System.out.println("done!");
+
+            //convert each row from the query to a result object
+            //then add each row to an array list then return the array list
+            while (res.next()){
+                Result row = convertThreeColumn(res);
+                list.add(row);
+
             }
 
         }
@@ -60,10 +110,11 @@ public class SearchMovieDAO {
     public Result convertTwoColumn(ResultSet r){
         Result temp = null;
         try{
-            temp = new Result(r.getInt(0), r.getString(1));
+            temp = new Result(r.getInt(1), r.getString(2));
         }catch (Exception e){
             e.printStackTrace();
         }
+        System.out.println();
         return temp;
 
 
@@ -73,7 +124,7 @@ public class SearchMovieDAO {
     public Result convertThreeColumn(ResultSet r) {
         Result temp = null;
         try {
-            temp = new Result(r.getInt(0), r.getString(1), r.getString(2));
+            temp = new Result(r.getInt(1), r.getString(2), r.getString(3));
         } catch (Exception e) {
             e.printStackTrace();
         }

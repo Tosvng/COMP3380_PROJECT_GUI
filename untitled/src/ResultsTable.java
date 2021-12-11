@@ -10,12 +10,15 @@ public class ResultsTable extends AbstractTableModel {
     private ArrayList<Result> resultData;
 
     public ResultsTable(ArrayList<Result> temp ){
+        columnNames = new ArrayList<String>();
         resultData = temp;
-        if(temp.size() == 2){
+        String checkForNameColumn = temp.get(0).getName(); // used to check how many columns we need for the table
+
+        if(checkForNameColumn == null){// if there is no name column then it has 2 columns
             columnNames.add("ID");
             columnNames.add("Title");
         }
-        else if(temp.size() == 3){
+        else if(checkForNameColumn != null){
             columnNames.add("ID");
             columnNames.add("Title");
             columnNames.add("Name");
@@ -37,6 +40,8 @@ public class ResultsTable extends AbstractTableModel {
     public String getColumnName(int col){
         return columnNames.get(col);
     }
+
+
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Result t = resultData.get(rowIndex);
