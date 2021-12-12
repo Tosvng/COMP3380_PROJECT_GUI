@@ -9,6 +9,8 @@ public class Result {
     private  int id;
     private String title;
     private String name;
+    private String department;
+
 
     public Result(int id, String title){
         this.id = id;
@@ -21,6 +23,13 @@ public class Result {
         this.name = name;
     }
 
+    public Result(int id, String title, String name, String department){
+        this.id = id;
+        this.title = title;
+        this.name = name;
+        this.department = department;
+    }
+
     public int getId() {
         return id;
     }
@@ -31,5 +40,9 @@ public class Result {
 
     public String getName() {
         return name;
+    }
+
+    public String getDepartment() {
+        return department;
     }
 }

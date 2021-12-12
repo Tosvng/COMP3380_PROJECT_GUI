@@ -44,7 +44,7 @@ public class SearchPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String selected = (String) showWithBox.getSelectedItem(); // the value that was selected in the combo box drop down
                 int indexSelected = showWithBox.getSelectedIndex();
-                System.out.println(indexSelected);
+                //System.out.println(indexSelected);
                 String title = titleText.getText();
                 String movieID = movieIdText.getText();
                 String releaseDate = releaseDateText.getText();
@@ -54,16 +54,15 @@ public class SearchPage extends JFrame {
                     showResultPage();
                 }
 
-                else if(title.isEmpty() && movieID.isEmpty() && releaseDate.isEmpty()){
+                else if(title.isEmpty() && movieID.isEmpty() && releaseDate.isEmpty()){// showing all movies with their relationships
                     switch (indexSelected){
-                        case 1:
-                            allCasts();
-                            showResultPage();
-                        case 5:
-                            producedBy();
-                            showResultPage();
-                        default:
-                            allMovies();
+                        case 1 -> allCasts();
+                        case 2 -> appears();
+                        case 3 -> category();
+                        case 4 -> producedBy();
+                        case 5 -> producedIn();
+                        case 6 -> works();
+                        default -> allMovies();
                     }
 
                 }
@@ -86,17 +85,48 @@ public class SearchPage extends JFrame {
 
         result= null;
         result = searchDAO.showAllMovies(); // get the result of the query
+        showResultPage();
     }
 
     public void allCasts(){
         result= null;
         result = searchDAO.moviesXactors();
+        showResultPage();
+    }
+
+    public void appears(){
+        result= null;
+        result = searchDAO.appears();
+        showResultPage();
+    }
+
+    public void category(){
+        result= null;
+        result = searchDAO.category();
+        showResultPage();
+    }
+
+    public void producedIn(){
+        result = null;
+        result = searchDAO.producedBy();
+        showResultPage();
     }
 
     public void producedBy(){
         result = null;
         result = searchDAO.producedBy();
+        showResultPage();
     }
 
-    // revenue and budget would be buttons that create a new page to select grater than or less than and runtime
+    public void works(){
+        result = null;
+        result = searchDAO.works();
+        showResultPage();
+    }
+
+    public void plays(){
+        result= null;
+        result = searchDAO.plays();
+    }
+
 }
