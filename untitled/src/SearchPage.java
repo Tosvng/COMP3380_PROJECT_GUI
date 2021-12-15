@@ -17,6 +17,11 @@ public class SearchPage extends JFrame {
     private JButton revenueButton;
     private JButton budgetButton;
     private JButton searchButton;
+    private JPanel genrePanel;
+    private JCheckBox allGenreBox;
+    private JComboBox selectedGenreBox1;
+    private JButton addGenreButton;
+    private JComboBox selectedGenreBox2;
 
     private JFrame f = new JFrame();
     private SearchMovieDAO searchDAO = new SearchMovieDAO();
@@ -42,30 +47,47 @@ public class SearchPage extends JFrame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String selected = (String) showWithBox.getSelectedItem(); // the value that was selected in the combo box drop down
+                String selected = (String) showWithBox.getSelectedItem(); // the value that was selected in the movie combo box drop down
+                String selectedGenre1 = (String) selectedGenreBox1.getSelectedItem();// value selected in genre combo box
                 int indexSelected = showWithBox.getSelectedIndex();
+                int genreIndexSelected1 = selectedGenreBox1.getSelectedIndex();//index of the genre choice selected
                 //System.out.println(indexSelected);
                 String title = titleText.getText();
                 String movieID = movieIdText.getText();
                 String releaseDate = releaseDateText.getText();
 
-                if(allMoviesBox.isSelected() & selected.equalsIgnoreCase("Show with")){//when show all movies is checked
-                    allMovies();
-                    showResultPage();
+                if(allMoviesBox.isSelected() && selected.equalsIgnoreCase("Show all Movies with")){//when show all movies is checked
+                    showEntityTable("movie");
+
+                }
+                else if(allGenreBox.isSelected() && selectedGenre1.equalsIgnoreCase("Select a Genre")){
+                    showEntityTable("genre");
                 }
 
                 else if(title.isEmpty() && movieID.isEmpty() && releaseDate.isEmpty()){// showing all movies with their relationships
-                    switch (indexSelected){
-                        case 1 -> allCasts();
-                        case 2 -> appears();
-                        case 3 -> category();
-                        case 4 -> producedBy();
-                        case 5 -> producedIn();
-                        case 6 -> works();
-                        default -> allMovies();
+                    if(indexSelected != 0) {
+                        switch (indexSelected) {
+                            case 1 -> allCasts();
+                            case 2 -> appears();
+                            case 3 -> category();
+                            case 4 -> producedBy();
+                            case 5 -> producedIn();
+                            case 6 -> works();
+                            default -> showEntityTable("movie");
+                        }
+                    }else if(genreIndexSelected1 != 0){
+                        specificGenre(genreIndexSelected1, "movie", (String) selectedGenreBox1.getSelectedItem());
                     }
 
                 }
+
+            }
+        });
+        // adds a genre to a query
+        addGenreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedGenreBox2.setVisible(true);
 
             }
         });
@@ -81,10 +103,10 @@ public class SearchPage extends JFrame {
         resPage.setVisible(true);
     }
 
-    public void allMovies(){
+    public void showEntityTable(String entity){
 
         result= null;
-        result = searchDAO.showAllMovies(); // get the result of the query
+        result = searchDAO.showAll(entity); // get the result of the query
         showResultPage();
     }
 
@@ -124,9 +146,40 @@ public class SearchPage extends JFrame {
         showResultPage();
     }
 
-    public void plays(){
+    public void plays(){ // not finished yet
         result= null;
         result = searchDAO.plays();
+    }
+
+    //view all of an entities' relation with a particular genre e.g. action,romance
+    //int x is the position selected in the comboBox
+    // tab is the table genre joins with and choice is the genre name
+    public void specificGenre(int x, String tab, String choice){
+        result = null;
+        switch (x){
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+                result = searchDAO.specificGenre(tab,choice);
+                showResultPage();
+                break;
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + x);
+        }
+
     }
 
 }

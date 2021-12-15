@@ -34,12 +34,33 @@ public class SearchMovieDAO {
     /*
     runs the sql query then returns the query result as an arraylist
      */
-    public ArrayList<Result> showAllMovies(){
+    public ArrayList<Result> showAll(String entity){
         list = new ArrayList<Result>();
         state=null;
         try{
             state = connect.createStatement();
-            res = state.executeQuery("SELECT movieID,title FROM movie ORDER BY title");
+            if(entity.equalsIgnoreCase("movie")) {//select all movies
+                res = state.executeQuery("SELECT movieID,title FROM movie ORDER BY movieID ");
+            }else if(entity.equalsIgnoreCase("genre")){//select all genres
+                res = state.executeQuery("SELECT genreID,genreName FROM genre ORDER BY genreID ");
+            }else if(entity.equalsIgnoreCase("character")){//select all character
+                res = state.executeQuery("SELECT characterID,characterName FROM " +
+                        "character ORDER BY characterID ");
+            }else if(entity.equalsIgnoreCase("location")){//select all location
+                res = state.executeQuery("SELECT countryName,country FROM " +
+                        "location ORDER BY countryName ");
+            }else if(entity.equalsIgnoreCase("company")){//select all company
+                res = state.executeQuery("SELECT companyID,companyName FROM " +
+                        "company ORDER BY companyID ");
+            }else if(entity.equalsIgnoreCase("actor")){//select all actor
+                res = state.executeQuery("SELECT actorID,actorName FROM " +
+                        "actor ORDER BY actorID ");
+            }
+            else if(entity.equalsIgnoreCase("staff")){//select all staff
+                res = state.executeQuery("SELECT staffID,staffName FROM " +
+                        "staff ORDER BY staffID ");
+            }
+
             //System.out.println("done!");
 
             //convert each row from the query to a result object
@@ -220,7 +241,7 @@ public class SearchMovieDAO {
                     "inner join movie on works.movieID = movie.movieID " +
                     "inner join staff on works.staffID = staff.staffID " +
                     "inner join belong on belong.staffID = staff.staffID " +
-                    "inner join department on belong.departmentName = department.departmentName" +
+                    "inner join department on belong.departmentName = department.departmentName " +
                     "ORDER BY title");
             //System.out.println("done!");
 
@@ -239,6 +260,73 @@ public class SearchMovieDAO {
         return list;
     }
 
+    //when the user enters a specific genre name
+    public ArrayList<Result> specificGenre(String entity, String genre){
+        list = new ArrayList<Result>();
+        state=null;
+        try{
+            state = connect.createStatement();
+            if(entity.equalsIgnoreCase("movie")) {//select all movies
+                res = state.executeQuery("select movie.movieId, title, genreName from movie " +
+                        " inner join category on category.movieID = movie.movieID " +
+                        " inner join genre on genre.genreID = category.genreID " +
+                        " where genreName = " +"'" +genre + "'" +" ORDER  BY  movie.movieId " );
+            }else if(entity.equalsIgnoreCase("location")){//select all location
+                res = state.executeQuery("select location.country,location.countryName, genreName from genre " +
+                        " inner join category on category.genreID = genre.genreID " +
+                        " inner join movie on movie.movieID = category.movieID " +
+                        " inner join produced_in on produced_in.movieId = movie.movieID " +
+                        " inner join location on location.country = produced_in.country " +
+                        " where genreName = " +"'" +genre + "'" +" ORDER  BY  location.country " );
+            }else if(entity.equalsIgnoreCase("character")){//select all character
+                res = state.executeQuery("select character.characterID,character.characterName, genreName from genre " +
+                        " inner join category on category.genreID = genre.genreID " +
+                        " inner join movie on movie.movieID = category.movieID " +
+                        " inner join appears on appears.movieId = movie.movieID " +
+                        " inner join character on character.characterID = appears.characterID " +
+                        " where genreName = " +"'" +genre + "'" +" ORDER  BY  character.characterID ");
+            }
+            else if(entity.equalsIgnoreCase("company")){//select all company
+                res = state.executeQuery("select company.companyID,company.companyName, genreName from genre " +
+                        " inner join category on category.genreID = genre.genreID " +
+                        " inner join movie on movie.movieID = category.movieID " +
+                        " inner join produced_by on produced_by.movieId = movie.movieID " +
+                        " inner join company on company.companyID = produced_by.companyID " +
+                        " where genreName = " +"'" +genre + "'" +" ORDER  BY  company.companyID ");
+            }else if(entity.equalsIgnoreCase("actor")){//select all actor
+                res = state.executeQuery("select actor.actorID,actor.actorName, genreName from genre " +
+                        " inner join category on category.genreID = genre.genreID " +
+                        " inner join movie on movie.movieID = category.movieID " +
+                        " inner join cast on cast.movieId = movie.movieID " +
+                        " inner join actor on actor.actorID = cast.actorID " +
+                        " where genreName = " +"'" +genre + "'" +" ORDER  BY  actor.actorID ");
+            }
+            else if(entity.equalsIgnoreCase("staff")){//select all staff
+                res = state.executeQuery("select staff.staffID,staff.staffName, genreName from genre " +
+                        " inner join category on category.genreID = genre.genreID " +
+                        " inner join movie on movie.movieID = category.movieID " +
+                        " inner join works on works.movieId = movie.movieID " +
+                        " inner join staff on staff.staffID = works.staffID " +
+                        " where genreName = " +"'" +genre + "'" +" ORDER  BY  staff.staffID ");
+            }
+
+            //System.out.println("done!");
+
+            //convert each row from the query to a result object
+            //then add each row to an array list then return the array list
+            while (res.next()){
+                Result row = convertThreeColumn(res);
+                list.add(row);
+
+            }
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+
+    }
     // convert when we are only returning 2 columns
     public Result convertTwoColumn(ResultSet r){
         Result temp = null;

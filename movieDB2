@@ -1,53 +1,54 @@
 CREATE TABLE movie (
 	movieID	INTEGER NOT NULL,
-	title	VARCHAR(20),
-	releaseDate INTEGER,
+	title	VARCHAR(100),
+	releaseDate DATE,
+	runtime INTEGER,
 	status	VARCHAR(10),
 	budget INTEGER,
 	revenue INTEGER,
 	PRIMARY KEY(movieID)
-);
+);--doneish
 
 CREATE TABLE genre (
 	genreID	INTEGER NOT NULL,
 	genreName	VARCHAR(20),
 	PRIMARY KEY(genreID)
-);
+);--done
 
 CREATE TABLE character (
 	characterID	INTEGER NOT NULL,
-	characterName	VARCHAR(20),
+	characterName	VARCHAR(100),
 	PRIMARY KEY(characterID)
-);
+);--done
 
 CREATE TABLE location (
 	country	VARCHAR(2) NOT NULL,
-	--countryName	VARCHAR(20),
+	countryName	VARCHAR(50),
 	PRIMARY KEY(country)
-);
+);--done
 
 CREATE TABLE company (
 	companyID	INTEGER NOT NULL,
 	companyName	VARCHAR(100),
 	PRIMARY KEY(companyID)
-);
+);--done
 
 CREATE TABLE department (
 	departmentName	VARCHAR(20) NOT NULL,
 	PRIMARY KEY(departmentName)
-);
+);--done
 
 CREATE TABLE actor (
 	actorID	INTEGER NOT NULL,
-	actorName	VARCHAR(20),
+	actorName	VARCHAR(100),
 	PRIMARY KEY(actorID)
-);
+);--done
 
 CREATE TABLE staff (
 	staffID	INTEGER NOT NULL,
-	staffName	VARCHAR(20),
+	staffName	VARCHAR(100),
 	PRIMARY KEY(staffID)
-);
+);--done
 
 CREATE TABLE category (
 	movieID	INTEGER NOT NULL,
@@ -55,7 +56,7 @@ CREATE TABLE category (
 	PRIMARY KEY(movieID,genreID),
 	FOREIGN KEY(movieID) REFERENCES movie(movieID),
 	FOREIGN KEY(genreID) REFERENCES genre(genreID)
-);
+);--done
 
 CREATE TABLE produced_by (
 	movieID	INTEGER NOT NULL,
@@ -63,7 +64,7 @@ CREATE TABLE produced_by (
 	PRIMARY KEY(movieID,companyID),
 	FOREIGN KEY(movieID) REFERENCES movie(movieID),
 	FOREIGN KEY(companyID) REFERENCES company(companyID)
-);
+);--done
 
 CREATE TABLE produced_in (
 	movieID	INTEGER NOT NULL,
@@ -71,7 +72,7 @@ CREATE TABLE produced_in (
 	PRIMARY KEY(movieID,country),
 	FOREIGN KEY(movieID) REFERENCES movie(movieID),
 	FOREIGN KEY(country) REFERENCES location(country)
-);
+);--done
 
 CREATE TABLE appears (
 	movieID	INTEGER NOT NULL,
@@ -79,7 +80,7 @@ CREATE TABLE appears (
 	PRIMARY KEY(movieID,characterID),
 	FOREIGN KEY(movieID) REFERENCES movie(movieID),
 	FOREIGN KEY(characterID) REFERENCES character(characterID)
-);
+);--done
 
 CREATE TABLE plays (
 	actorID	INTEGER NOT NULL,
@@ -87,7 +88,7 @@ CREATE TABLE plays (
 	PRIMARY KEY(actorID,characterID),
 	FOREIGN KEY(actorID) REFERENCES actor(actorID),
 	FOREIGN KEY(characterID) REFERENCES character(characterID)
-);
+); --done
 
 CREATE TABLE cast (
 	movieID	INTEGER NOT NULL,
@@ -95,7 +96,7 @@ CREATE TABLE cast (
 	PRIMARY KEY(movieID,actorID),
 	FOREIGN KEY(movieID) REFERENCES movie(movieID),
 	FOREIGN KEY(actorID) REFERENCES actor(actorID)
-);
+);--DONE
 
 CREATE TABLE works (
 	movieID	INTEGER NOT NULL,
@@ -103,7 +104,7 @@ CREATE TABLE works (
 	PRIMARY KEY(movieID,staffID),
 	FOREIGN KEY(movieID) REFERENCES movie(movieID),
 	FOREIGN KEY(staffID) REFERENCES staff(staffID)
-);
+);--done'
 
 CREATE TABLE belong (
 	departmentName	VARCHAR(20) NOT NULL,
@@ -111,4 +112,65 @@ CREATE TABLE belong (
 	PRIMARY KEY(departmentName,staffID),
 	FOREIGN KEY(departmentName) REFERENCES department(departmentName),
 	FOREIGN KEY(staffID) REFERENCES staff(staffID)
-);
+);--done'
+
+INSERT INTO MOVIE VALUES (1,'Toy Story', '1995-10-30',81,'Released',30000000, 373554033);
+INSERT INTO MOVIE VALUES (2,'Jumanji', '1995-12-15',104,'Released', 65000000, 262797249 );
+INSERT INTO MOVIE VALUES (3,'Grumpier Old Men', '1995-12-22', 101, 'Released', 25000000, 71500000 );
+INSERT INTO MOVIE VALUES (4,'Waiting to Exhale', '1995-12-22', 127, 'Released', 16000000, 81452156 );
+INSERT INTO MOVIE VALUES (5,'Father of the Bride Part II', '1995-10-2', 106, 'Released', 30000000, 76578911 );
+INSERT INTO MOVIE VALUES (6,'Heat', '1995-12-15', 170, 'Released', 60000000, 67436818 );
+INSERT INTO MOVIE VALUES (7,'Sabrina', '1995-12-15', 127, 'Released', 58000000, 87100000 );
+INSERT INTO MOVIE VALUES (8,'Tom and Huck', '1995-12-22', 97, 'Released', 23000000, 23900000 );
+INSERT INTO MOVIE VALUES (9,'Sudden Death', '1995-12-22', 106, 'Released', 35000000, 64350171 );
+INSERT INTO MOVIE VALUES (10,'GoldenEye', '1995-11-16', 130, 'Released', 58000000, 352194034 );
+INSERT INTO MOVIE VALUES (11,'The American President', '1995-11-17', 130, 'Released', 62000000, 107879496 );
+INSERT INTO MOVIE VALUES (12,'Dracula: Dead and Loving It', '1995-12-22', 88, 'Released', 30000000, 10700000 );
+INSERT INTO MOVIE VALUES (13,'Balto', '1995-12-22', 78, 'Released', 30000000, 11348324 );
+INSERT INTO MOVIE VALUES (14,'Nixon', '1995-12-22', 192, 'Released', 44000000, 13681765 );
+INSERT INTO MOVIE VALUES (15,'Cutthroat Island', '1995-12-22', 119, 'Released', 98000000, 10017322 );
+INSERT INTO MOVIE VALUES (16,'Casino', '1995-11-22', 178, 'Released', 52000000, 116112375 );
+INSERT INTO MOVIE VALUES (17,'Sense and Sensibility', '1995-12-13', 136, 'Released', 16500000, 135000000 );
+INSERT INTO MOVIE VALUES (18,'Four Rooms', '1995-12-9', 98, 'Released', 4000000, 4300000 );
+INSERT INTO MOVIE VALUES (19,'Ace Ventura: When Nature Calls', '1995-10-11', 90, 'Released', 30000000, 212385533 );
+INSERT INTO MOVIE VALUES (20,'Money Train', '1995-11-21', 103, 'Released', 60000000, 35431113 );
+INSERT INTO MOVIE VALUES (21,'Get Shorty', '1995-10-20', 105, 'Released', 30250000, 115101622 );
+INSERT INTO MOVIE VALUES (22,'Django Unchained', '2012-12-25', 165, 'Released', 100000000, 425368238 );
+INSERT INTO MOVIE VALUES (23,'2 Guns', '2013-02-08', 109, 'Released', 61000000, 131940411 );
+INSERT INTO MOVIE VALUES (24,'Suicide Squad', '2016-02-08', 123, 'Released', 175000000, 745600054 );
+INSERT INTO MOVIE VALUES (25,'The Social Network', '2010-09-30', 120, 'Released', 40000000, 224920315 );
+INSERT INTO MOVIE VALUES (26,'Men in Black', '1997-02-07', 98, 'Released', 90000000, 589390539 );
+--titanic's revenue (2202000000) is too large for integer
+INSERT INTO MOVIE VALUES (27,'Titanic', '1996-11-17', 173, 'Released', 13000000, 0 );
+INSERT INTO MOVIE VALUES (28,'The Shining', '1980-05-22', 144, 'Released', 19000000, 44017374 );
+INSERT INTO MOVIE VALUES (29,'Fight Club', '1999-10-15', 139, 'Released', 63000000, 100853753 );
+INSERT INTO MOVIE VALUES (30,'Shutter Island', '2010-02-18', 138, 'Released', 80000000, 294804195 );
+INSERT INTO MOVIE VALUES (31,'I Am Legend', '2007-12-14', 101, 'Released', 150000000, 585349010 );
+INSERT INTO MOVIE VALUES (32,'Catch Me If You Can', '2002-12-25', 141, 'Released', 52000000, 352114312 );
+INSERT INTO MOVIE VALUES (35,'Kingsman: The Secret Service', '2015-01-29', 130, 'Released', 81000000, 414351546 );
+INSERT INTO MOVIE VALUES (36,'Grown Ups', '2010-06-24', 102, 'Released', 80000000, 271430189 );
+INSERT INTO MOVIE VALUES (37,'Grown Ups 2', '2013-07-11', 100, 'Released', 80000000, 246984278 );
+--genres
+
+insert into genre values(1,'Romance');
+insert into genre values(2,'Thriller');
+insert into genre values(3,'Comedy');
+insert into genre values(4,'Science Fiction');
+insert into genre values(5,'Adventure');
+insert into genre values(6,'Action');
+insert into genre values(7,'Mystery');
+insert into genre values(8,'Horror');
+insert into genre values(9,'Animation');
+insert into genre values(10,'Crime');
+insert into genre values(11,'Drama');
+insert into genre values(12,'Family');
+insert into genre values(14,'Fantasy');
+insert into genre values(36,'History');
+insert into genre values(37,'Western');
+
+--location
+INSERT INTO location VALUES ('FR', 'France');
+INSERT INTO location VALUES ('GE', 'Germany');
+INSERT INTO location VALUES ('UK', 'United Kingdom');
+INSERT INTO location VALUES ('US', 'United States of America');
+INSERT INTO location VALUES ('CA', 'Canada');
