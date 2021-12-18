@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="mainSearchPanel" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="20" vgap="20">
     <margin top="20" left="10" bottom="20" right="10"/>
     <constraints>
-      <xy x="20" y="20" width="625" height="633"/>
+      <xy x="20" y="20" width="625" height="735"/>
     </constraints>
     <properties>
       <background color="-16706302"/>
@@ -33,7 +33,7 @@
           </component>
         </children>
       </grid>
-      <grid id="23d92" binding="moviePanel" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="20" vgap="10">
+      <grid id="23d92" binding="moviePanel" layout-manager="GridLayoutManager" row-count="10" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="20" vgap="10">
         <margin top="10" left="5" bottom="10" right="5"/>
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -60,107 +60,26 @@
               <text value="SHOW ALL MOVIES"/>
             </properties>
           </component>
-          <component id="22b6b" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-16777216"/>
-              <font name="Bell MT" size="20" style="1"/>
-              <foreground color="-16777216"/>
-              <text value="Title"/>
-            </properties>
-          </component>
           <component id="3a78" class="javax.swing.JLabel">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-16777216"/>
               <font name="Bell MT" size="20" style="1"/>
               <foreground color="-16777216"/>
-              <text value="MovieID"/>
+              <text value="Runtime"/>
             </properties>
           </component>
           <component id="cf743" class="javax.swing.JLabel">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-16777216"/>
               <font name="Bell MT" size="20" style="1"/>
               <foreground color="-16777216"/>
-              <text value="Release Date"/>
-            </properties>
-          </component>
-          <component id="c8838" class="javax.swing.JButton" binding="runTimeButton">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-16706302"/>
-              <font name="Bell MT" size="20" style="1"/>
-              <foreground color="-15708331"/>
-              <text value="RUNTIME"/>
-            </properties>
-          </component>
-          <component id="dc19f" class="javax.swing.JButton" binding="budgetButton">
-            <constraints>
-              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-5391683"/>
-              <font name="Bell MT" size="20" style="1"/>
-              <foreground color="-16777216"/>
-              <text value="BUDGET"/>
-            </properties>
-          </component>
-          <component id="1f456" class="javax.swing.JButton" binding="revenueButton">
-            <constraints>
-              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-16777216"/>
-              <font name="Bell MT" size="20" style="1"/>
-              <foreground color="-14746594"/>
-              <text value="REVENUE"/>
-            </properties>
-          </component>
-          <component id="63a38" class="javax.swing.JTextField" binding="movieIdText">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <background color="-6371925"/>
-              <font name="Bell MT" size="20"/>
-              <foreground color="-16706302"/>
-            </properties>
-          </component>
-          <component id="b3ff5" class="javax.swing.JTextField" binding="titleText">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <background color="-6371925"/>
-              <font name="Bell MT" size="20"/>
-              <foreground color="-16706302"/>
-              <text value=""/>
-            </properties>
-          </component>
-          <component id="c282b" class="javax.swing.JTextField" binding="releaseDateText">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <background color="-6371925"/>
-              <font name="Bell MT" size="20"/>
-              <foreground color="-16706302"/>
+              <text value="Budget"/>
             </properties>
           </component>
           <component id="4499b" class="javax.swing.JComboBox" binding="showWithBox">
@@ -185,11 +104,160 @@
               <toolTipText value=""/>
             </properties>
           </component>
+          <component id="a2ed2" class="javax.swing.JTextField" binding="maxRuntimeText">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-6371925"/>
+              <font name="Bell MT" size="20"/>
+              <foreground color="-16706302"/>
+            </properties>
+          </component>
+          <component id="d64af" class="javax.swing.JTextField" binding="minRuntimeText">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-6371925"/>
+              <font name="Bell MT" size="20"/>
+              <foreground color="-16706302"/>
+            </properties>
+          </component>
+          <component id="872d1" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <font name="Bell MT" size="20" style="1"/>
+              <foreground color="-16777216"/>
+              <text value="Max"/>
+            </properties>
+          </component>
+          <component id="1056d" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <font name="Bell MT" size="20" style="1"/>
+              <foreground color="-16777216"/>
+              <text value="Min"/>
+            </properties>
+          </component>
+          <component id="5e7a1" class="javax.swing.JTextField" binding="maxBudgetText">
+            <constraints>
+              <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-6371925"/>
+              <font name="Bell MT" size="20"/>
+              <foreground color="-16706302"/>
+            </properties>
+          </component>
+          <component id="2e904" class="javax.swing.JTextField" binding="minBudgetText">
+            <constraints>
+              <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-6371925"/>
+              <font name="Bell MT" size="20"/>
+              <foreground color="-16706302"/>
+            </properties>
+          </component>
+          <component id="99daf" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <font name="Bell MT" size="20" style="1"/>
+              <foreground color="-16777216"/>
+              <text value="Max"/>
+            </properties>
+          </component>
+          <component id="2241c" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <font name="Bell MT" size="20" style="1"/>
+              <foreground color="-16777216"/>
+              <text value="Min"/>
+            </properties>
+          </component>
+          <component id="d219a" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <font name="Bell MT" size="20" style="1"/>
+              <foreground color="-16777216"/>
+              <text value="Revenue"/>
+            </properties>
+          </component>
+          <component id="bf56a" class="javax.swing.JTextField" binding="maxRevenueText">
+            <constraints>
+              <grid row="8" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-6371925"/>
+              <font name="Bell MT" size="20"/>
+              <foreground color="-16706302"/>
+            </properties>
+          </component>
+          <component id="cb230" class="javax.swing.JTextField" binding="minRevenueText">
+            <constraints>
+              <grid row="9" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-6371925"/>
+              <font name="Bell MT" size="20"/>
+              <foreground color="-16706302"/>
+            </properties>
+          </component>
+          <component id="570b6" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <font name="Bell MT" size="20" style="1"/>
+              <foreground color="-16777216"/>
+              <text value="Max"/>
+            </properties>
+          </component>
+          <component id="1b2f7" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16777216"/>
+              <font name="Bell MT" size="20" style="1"/>
+              <foreground color="-16777216"/>
+              <text value="Min"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <component id="439ba" class="javax.swing.JButton" binding="searchButton">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-6371925"/>

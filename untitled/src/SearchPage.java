@@ -9,19 +9,22 @@ public class SearchPage extends JFrame {
     private JPanel mainSearchPanel;
     private JPanel moviePanel;
     private JCheckBox allMoviesBox;
-    private JButton runTimeButton;
     private JTextField movieIdText;
     private JTextField titleText;
     private JTextField releaseDateText;
     private JComboBox showWithBox;
-    private JButton revenueButton;
-    private JButton budgetButton;
     private JButton searchButton;
     private JPanel genrePanel;
     private JCheckBox allGenreBox;
     private JComboBox selectedGenreBox1;
     private JButton addGenreButton;
     private JComboBox selectedGenreBox2;
+    private JTextField maxRuntimeText;
+    private JTextField minRuntimeText;
+    private JTextField maxBudgetText;
+    private JTextField minBudgetText;
+    private JTextField maxRevenueText;
+    private JTextField minRevenueText;
 
     private JFrame f = new JFrame();
     private SearchMovieDAO searchDAO = new SearchMovieDAO();
@@ -156,28 +159,12 @@ public class SearchPage extends JFrame {
     // tab is the table genre joins with and choice is the genre name
     public void specificGenre(int x, String tab, String choice){
         result = null;
-        switch (x){
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-                result = searchDAO.specificGenre(tab,choice);
+        switch (x) {
+            case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 -> {
+                result = searchDAO.specificGenre(tab, choice);
                 showResultPage();
-                break;
-
-            default:
-                throw new IllegalStateException("Unexpected value: " + x);
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + x);
         }
 
     }

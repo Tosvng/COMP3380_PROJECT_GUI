@@ -1,0 +1,25 @@
+--drop table plays;
+--select title,companyName as genre from produced_by inner join movie on
+--produced_by.movieID= movie.movieID
+--inner join company on 
+--company.companyID = produced_by.companyID
+--;
+ 
+ --select actorName, characterName from plays
+ --inner join actor on plays.actorID = actor.actorid
+ --inner join character on
+ --character.characterID = plays.characterID 
+ --order by actorName
+-- ;
+
+select movie.movieId, title, staffName, department.departmentName
+ from works
+ inner join movie on
+ works.movieID = movie.movieID
+ inner join staff on
+ works.staffID = staff.staffID
+ inner join belong on
+ belong.staffID = staff.staffID
+ inner join department on
+ belong.departmentName = department.departmentName
+ ORDER BY title

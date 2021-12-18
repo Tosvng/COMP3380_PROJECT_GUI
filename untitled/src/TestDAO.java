@@ -27,6 +27,9 @@ public class TestDAO {
         }
     }
 
+    public void anyQuery(String x){
+
+    }
 
     //method to insert values into the database
     public void insert(String sin , String  aid) {
@@ -46,11 +49,12 @@ public class TestDAO {
 
         }
 
+
     }
 
     public static void main (String[] args){
 
-        //TestDAO t = new TestDAO();
+        TestDAO t = new TestDAO();
         //t.insert("11","14");
         String str = "";
         int strInt= Integer.parseInt(str);

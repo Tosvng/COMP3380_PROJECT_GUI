@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class FrontPage extends JFrame {
-    private JPanel mainPanel;
+    private JPanel mainPanel ;
     private JPanel welcomePanel;
     private JLabel welcomeLabel;
     private JButton insertButton;
