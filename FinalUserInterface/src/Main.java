@@ -27,7 +27,10 @@ public class Main {
             }
             //_________________QUERIES_____________________________
             else if(input.equalsIgnoreCase("Q1")){
-                m.query1();
+                System.out.println("Enter user input");
+                scan = new Scanner(System.in);
+                input = scan.nextLine();
+                m.query1(input);
             }else if(input.equalsIgnoreCase("Q2")){
                 m.query2();
             }else if(input.equalsIgnoreCase("Q3")){

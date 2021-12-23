@@ -115,7 +115,15 @@ public class MovieDAO {
                 System.out.println(res.getString(1)+ ", "+ res.getString(2)+", "+res.getInt(3));
 
             }*/
-            
+            preState = connect.prepareStatement("select Title, ReleaseDate, revenue - budget as profit " +
+                    " from Movies " +
+                    " where releaseDate like ? +'%' " +
+                    " and profit > 0 " +
+                    " order by profit desc " +
+                    " limit 5 ");
+            preState.setString(1,date);
+
+            System.out.println(preState);
         }
         catch (Exception e){
             e.printStackTrace();
