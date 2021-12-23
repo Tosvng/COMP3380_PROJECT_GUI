@@ -7,7 +7,7 @@ public class TestForm extends JFrame {
     public TestForm(String title) {
         super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         this.setContentPane(mainPanel);
         this.pack();
     }
