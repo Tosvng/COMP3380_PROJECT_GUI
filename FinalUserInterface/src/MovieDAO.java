@@ -178,4 +178,116 @@ public class MovieDAO {
         }
 
     }
+
+
+    // Find all actors and characters in Toy Story
+    public void query6(){
+        try{
+            state = connect.createStatement();
+            res = state.executeQuery("select actorName, characterName from Actors natural join "+
+                    " Cast natural join Characters "+
+                    " natural join Play " +
+                    "natural join Movies " +
+                    " where Movies.title = 'Toy Story' "
+            );
+            System.out.println("ActorName"+", "+"CharacterName");
+            while (res.next()){
+                System.out.println(res.getString(1)+ ", "+ res.getString(2));
+
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //Find all actors who played more than 1 character in the movie Toy Story
+    public void query7(){
+        try{
+            state = connect.createStatement();
+            res = state.executeQuery("select ActorName, count(CharacterName) as numCharacters "+
+                    "from Actors "+
+                    "natural join Cast "+
+                    "natural join Character "+
+                    "natural join Play " +
+                    "natural join Movies "+
+                    "where Movies.title = 'Toy Story' "+
+                    "group by ActorName having numCharacter > 1"
+            );
+            System.out.println("ActorName"+", "+"numCharacter");
+            while (res.next()){
+                System.out.println(res.getString(1)+ ", "+ res.getInt(2));
+
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //Find companies produce the most comedy movies
+    public void query8(){
+        try{
+            state = connect.createStatement();
+            res = state.executeQuery("select CompanyName, count(genreName) as numComedyMovies "+
+                    "from Companies "+
+                    "natural join Produced by "+
+                    "natural join Category "+
+                    "natural join Genre " +
+                    " where GenreName = 'Comedy' "+
+                    "group by CompanyName order by numComedyMovies desc"
+            );
+            System.out.println("CompanyName"+", "+"numComedyMovies");
+            while (res.next()){
+                System.out.println(res.getString(1)+ ", "+ res.getInt(2));
+
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    // Find the total average run time for all movie genres
+    public void query9(){
+        try{
+            state = connect.createStatement();
+            res = state.executeQuery("select genreName, avg(Runtime) as 'averageRuntime' "+
+                    "from Movies "+
+                    "natural join Category "+
+                    "natural join Genre" +
+                    "group by GenreName order by averageRuntime desc"
+            );
+            System.out.println("GenreName"+", "+"averageRuntime");
+            while (res.next()){
+                System.out.println(res.getString(1)+ ", "+ res.getInt(2));
+
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //Find the total average run time for all movie genres
+    public void query10(){
+        try{
+            state = connect.createStatement();
+            res = state.executeQuery("select  StaffID, StaffName, title, DepartmentName "+
+                    "from Staffs "+
+                    "natural join Belong "+
+                    "natural join Movies" +
+                    " natural join work " +
+                    "where departmentName = 'Writing' "+
+                    " and title in ( "+
+                    " select title from Movies where revenue - Budget < 0)"+
+                    " order by title "
+            );
+            System.out.println("StaffID"+ ", "+ "StaffName"+", "+"Title"+ ", "+ "DepartmentName");
+            while (res.next()){
+                System.out.println(res.getInt(1)+ ", "+ res.getString(2)+ ", "+ res.getString(3)
+                        + ", "+ res.getString(4));
+
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
