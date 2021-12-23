@@ -53,10 +53,10 @@ public class Main {
                 m.query5();
             }
             else if(temp[0].equalsIgnoreCase("Q6")){
-                m.query6(temp[1]);
+                m.query6(var);
             }
             else if(temp[0].equalsIgnoreCase("Q7")){
-                m.query7(temp[1]);
+                m.query7(var);
             }
             else if(temp[0].equalsIgnoreCase("Q8")){
                 m.query8(temp[1]);
@@ -77,7 +77,7 @@ public class Main {
 
             System.out.print("\n");
             System.out.print("db > ");
-            
+
         }
 
 
