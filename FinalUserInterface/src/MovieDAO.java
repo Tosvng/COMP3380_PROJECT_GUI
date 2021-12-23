@@ -123,7 +123,8 @@ public class MovieDAO {
                     " limit 5 ");
             preState.setString(1,date);
 
-            System.out.println(preState);
+            //System.out.println(preState);
+
         }
         catch (Exception e){
             e.printStackTrace();
