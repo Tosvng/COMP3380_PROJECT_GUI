@@ -1,5 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MovieDAO {
     private Connection connect;
@@ -76,12 +79,30 @@ public class MovieDAO {
             e.printStackTrace();
         }
 
+
+
     }
 
-    //__________________________QUERIES________________________
-    public void query1(){
-        try {
+    public void showDept(){
+
+        try{
             state = connect.createStatement();
+            res = state.executeQuery("SELECT departmentName FROM departments ORDER BY departmentName ");
+
+            System.out.println("Name");
+            while (res.next()){
+                System.out.println(res.getString(1));
+
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    //__________________________QUERIES________________________
+    public void query1(String date){
+        try {
+            /*state = connect.createStatement();
             res = state.executeQuery("select Title, ReleaseDate, revenue - budget as profit " +
                     " from Movies " +
                     " where releaseDate like '1995%' " +
@@ -93,7 +114,8 @@ public class MovieDAO {
             while (res.next()){
                 System.out.println(res.getString(1)+ ", "+ res.getString(2)+", "+res.getInt(3));
 
-            }
+            }*/
+            
         }
         catch (Exception e){
             e.printStackTrace();
@@ -207,7 +229,7 @@ public class MovieDAO {
             res = state.executeQuery("select ActorName, count(CharacterName) as numCharacters "+
                     "from Actors "+
                     "natural join Cast "+
-                    "natural join Character "+
+                    "natural join Characters "+
                     "natural join Play " +
                     "natural join Movies "+
                     "where Movies.title = 'Toy Story' "+
@@ -229,9 +251,9 @@ public class MovieDAO {
             state = connect.createStatement();
             res = state.executeQuery("select CompanyName, count(genreName) as numComedyMovies "+
                     "from Companies "+
-                    "natural join Produced by "+
+                    "natural join Produced_by "+
                     "natural join Category "+
-                    "natural join Genre " +
+                    "natural join Genres " +
                     " where GenreName = 'Comedy' "+
                     "group by CompanyName order by numComedyMovies desc"
             );
@@ -252,7 +274,7 @@ public class MovieDAO {
             res = state.executeQuery("select genreName, avg(Runtime) as 'averageRuntime' "+
                     "from Movies "+
                     "natural join Category "+
-                    "natural join Genre" +
+                    "natural join Genres" +
                     "group by GenreName order by averageRuntime desc"
             );
             System.out.println("GenreName"+", "+"averageRuntime");
@@ -286,6 +308,28 @@ public class MovieDAO {
 
             }
         }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void showHelp(){
+        try {
+            FileReader reader = new FileReader("Help.txt");
+            BufferedReader buff = new BufferedReader(reader);
+            String line = buff.readLine();
+            //String token = null;
+
+            while(line != null) {
+                Scanner scan = new Scanner(line);
+
+                System.out.println(line);
+
+                line = buff.readLine();
+
+            }
+            reader.close();
+        }
+        catch (Exception e){
             e.printStackTrace();
         }
     }
