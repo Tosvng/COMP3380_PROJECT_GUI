@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MovieDAO {
@@ -23,22 +22,6 @@ public class MovieDAO {
         }
     }
 
-    /*// show the movies table
-    public void showAllMovies(){
-        state=null;
-        try{
-            state = connect.createStatement();// create a statement
-            res = state.executeQuery("SELECT movieID,title FROM movies ORDER BY movieID ");
-            while (res.next()){
-                System.out.println(res.getInt(1)+ ","+ res.getString(2));
-
-            }
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }*/
 
     //show all
     public void showAll(String entity){
@@ -147,6 +130,7 @@ public class MovieDAO {
         }
         catch (Exception e){
             e.printStackTrace();
+            System.out.println("All input should be text");
         }
 
     }
@@ -223,6 +207,7 @@ public class MovieDAO {
             }
         }catch(Exception e){
             e.printStackTrace();
+            System.out.println("All input should be text");
         }
     }
 
@@ -247,6 +232,7 @@ public class MovieDAO {
             }
         }catch(Exception e){
             e.printStackTrace();
+            System.out.println("All input should be text");
         }
     }
 
@@ -273,6 +259,7 @@ public class MovieDAO {
 
         }catch(Exception e){
             e.printStackTrace();
+            System.out.println("All input should be text");
         }
     }
 
@@ -322,6 +309,7 @@ public class MovieDAO {
             }
         }catch(Exception e){
             e.printStackTrace();
+            System.out.println("All input should be text");
         }
     }
 
@@ -330,7 +318,6 @@ public class MovieDAO {
             FileReader reader = new FileReader("Help.txt");
             BufferedReader buff = new BufferedReader(reader);
             String line = buff.readLine();
-            //String token = null;
 
             while(line != null) {
                 Scanner scan = new Scanner(line);

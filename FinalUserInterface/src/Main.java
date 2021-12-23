@@ -39,9 +39,6 @@ public class Main {
             }
             //_________________QUERIES_____________________________
             else if(temp[0].equalsIgnoreCase("Q1")){
-                //System.out.println("Enter user input");
-                //scan = new Scanner(System.in);
-                //input = scan.nextLine();
                 m.query1();
             }else if(temp[0].equalsIgnoreCase("Q2")){
                 m.query2(temp[1],temp[2]);
