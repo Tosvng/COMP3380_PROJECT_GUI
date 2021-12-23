@@ -99,6 +99,83 @@ public class MovieDAO {
             e.printStackTrace();
         }
 
+    }
+
+    public void query2(){
+        try {
+            state = connect.createStatement();
+            res = state.executeQuery("select Title, CountryName, GenreName " +
+                    "from Movies " +
+                    " natural join Category " +
+                    " natural join Genres " +
+                    " natural join Produced_in " +
+                    " natural join Locations " +
+                    " where CountryID = 'FR' " +
+                    " and GenreName = 'Comedy' ");
+
+            System.out.println("Title"+ ", "+"CountryID" + ", "+ " GenreName");
+            while (res.next()){
+                System.out.println(res.getString(1)+ ", "+ res.getString(2)+", "+res.getString(3));
+
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public void query3(){
+        try {
+            state = connect.createStatement();
+            res = state.executeQuery("select title, budget from Movies " +
+                    "order by Budget");
+
+            System.out.println("Title"+ ", "+"Budget");
+            while (res.next()){
+                System.out.println(res.getString(1)+ ", "+ res.getInt(2));
+
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void query4(){
+        try {
+            state = connect.createStatement();
+            res = state.executeQuery("select title, revenue - budget as profit from Movies " +
+                    " where profit < 0 " +
+                    " order by profit desc");
+
+            System.out.println("Title"+ ", "+"Loss");
+            while (res.next()){
+                System.out.println(res.getString(1)+ ", "+ res.getInt(2));
+
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void query5(){/// titanic's revenue is too large for int
+        try {
+            state = connect.createStatement();
+            res = state.executeQuery("select title, revenue from Movies " +
+                    "order by revenue");
+
+            System.out.println("Title"+ ", "+"Revenue");
+            while (res.next()){
+                System.out.println(res.getString(1)+ ", "+ res.getInt(2));
+
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 }

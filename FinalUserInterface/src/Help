@@ -10,6 +10,8 @@ Department
 
 
 Type x to show all the queries related to x
-Q1. find all actor that have acted in action movies
-Q2. show query 2
-Q3.
+Q1. Find the 5 most profitable movies released in 1995
+Q2. Find all movies produced in France and a comedy
+Q3. Find movies order by budget
+Q4. Find movies where the movies lost money
+Q5. Find movies order by revenue
