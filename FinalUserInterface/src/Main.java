@@ -10,6 +10,7 @@ public class Main {
     public static void run(){
         MovieDAO m = new MovieDAO();
         System.out.println("Enter \"help\" to show instruction.");
+        System.out.print("\n");
         System.out.print("db > ");
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
@@ -74,7 +75,9 @@ public class Main {
                 System.out.println("Read the help with \"help\"");
             }
 
+            System.out.print("\n");
             System.out.print("db > ");
+            
         }
 
 
