@@ -100,9 +100,9 @@ public class MovieDAO {
         }
     }
     //__________________________QUERIES________________________
-    public void query1(String date){
+    public void query1(){
         try {
-            /*state = connect.createStatement();
+            state = connect.createStatement();
             res = state.executeQuery("select Title, ReleaseDate, revenue - budget as profit " +
                     " from Movies " +
                     " where releaseDate like '1995%' " +
@@ -114,16 +114,8 @@ public class MovieDAO {
             while (res.next()){
                 System.out.println(res.getString(1)+ ", "+ res.getString(2)+", "+res.getInt(3));
 
-            }*/
-            preState = connect.prepareStatement("select Title, ReleaseDate, revenue - budget as profit " +
-                    " from Movies " +
-                    " where releaseDate like ? +'%' " +
-                    " and profit > 0 " +
-                    " order by profit desc " +
-                    " limit 5 ");
-            preState.setString(1,date);
+            }
 
-            //System.out.println(preState);
 
         }
         catch (Exception e){
@@ -132,23 +124,26 @@ public class MovieDAO {
 
     }
 
-    public void query2(){
+    public void query2(String country, String genre){
         try {
-            state = connect.createStatement();
-            res = state.executeQuery("select Title, CountryName, GenreName " +
+
+            preState = connect.prepareStatement("select Title, CountryName, GenreName " +
                     "from Movies " +
                     " natural join Category " +
                     " natural join Genres " +
                     " natural join Produced_in " +
                     " natural join Locations " +
-                    " where CountryID = 'FR' " +
-                    " and GenreName = 'Comedy' ");
-
+                    " where CountryID = ? " +
+                    " and GenreName = ? ");
+            preState.setString(1,country);
+            preState.setString(2,genre);
+            res = preState.executeQuery();
             System.out.println("Title"+ ", "+"CountryID" + ", "+ " GenreName");
             while (res.next()){
                 System.out.println(res.getString(1)+ ", "+ res.getString(2)+", "+res.getString(3));
 
             }
+
         }
         catch (Exception e){
             e.printStackTrace();
@@ -212,15 +207,15 @@ public class MovieDAO {
 
 
     // Find all actors and characters in Toy Story
-    public void query6(){
+    public void query6(String title){
         try{
-            state = connect.createStatement();
-            res = state.executeQuery("select actorName, characterName from Actors natural join "+
+            preState = connect.prepareStatement("select actorName, characterName from Actors natural join "+
                     " Cast natural join Characters "+
-                    " natural join Play " +
-                    "natural join Movies " +
-                    " where Movies.title = 'Toy Story' "
-            );
+                            " natural join Play " +
+                            "natural join Movies " +
+                            " where Movies.title = ? ");
+            preState.setString(1,title);
+            res = preState.executeQuery();
             System.out.println("ActorName"+", "+"CharacterName");
             while (res.next()){
                 System.out.println(res.getString(1)+ ", "+ res.getString(2));
@@ -232,18 +227,19 @@ public class MovieDAO {
     }
 
     //Find all actors who played more than 1 character in the movie Toy Story
-    public void query7(){
+    public void query7(String title){
         try{
-            state = connect.createStatement();
-            res = state.executeQuery("select ActorName, count(CharacterName) as numCharacters "+
-                    "from Actors "+
-                    "natural join Cast "+
-                    "natural join Characters "+
-                    "natural join Play " +
-                    "natural join Movies "+
-                    "where Movies.title = 'Toy Story' "+
-                    "group by ActorName having numCharacter > 1"
-            );
+
+            preState = connect.prepareStatement("select ActorName, count(CharacterName) as numCharacters" +
+                    " from Actors" +
+                    " natural join Cast" +
+                    " natural join Characters " +
+                    " natural join Play " +
+                    " natural join Movies " +
+                    " where Movies.title = ? " +
+                    " group by ActorName having numCharacters > 1");
+            preState.setString(1,title);
+            res = preState.executeQuery();
             System.out.println("ActorName"+", "+"numCharacter");
             while (res.next()){
                 System.out.println(res.getString(1)+ ", "+ res.getInt(2));
@@ -255,22 +251,26 @@ public class MovieDAO {
     }
 
     //Find companies produce the most comedy movies
-    public void query8(){
+    public void query8(String genre){
         try{
-            state = connect.createStatement();
-            res = state.executeQuery("select CompanyName, count(genreName) as numComedyMovies "+
+
+            preState = connect.prepareStatement("select CompanyName, count(genreName) as numComedyMovies "+
                     "from Companies "+
                     "natural join Produced_by "+
                     "natural join Category "+
                     "natural join Genres " +
-                    " where GenreName = 'Comedy' "+
-                    "group by CompanyName order by numComedyMovies desc"
-            );
+                    " where GenreName = ? "+
+                    "group by CompanyName order by numComedyMovies desc limit 5");
+
+            preState.setString(1,genre);
+            res = preState.executeQuery();
+
             System.out.println("CompanyName"+", "+"numComedyMovies");
             while (res.next()){
                 System.out.println(res.getString(1)+ ", "+ res.getInt(2));
 
             }
+
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -284,7 +284,7 @@ public class MovieDAO {
                     "from Movies "+
                     "natural join Category "+
                     "natural join Genres" +
-                    "group by GenreName order by averageRuntime desc"
+                    " group by GenreName order by averageRuntime desc"
             );
             System.out.println("GenreName"+", "+"averageRuntime");
             while (res.next()){
@@ -297,19 +297,23 @@ public class MovieDAO {
     }
 
     //Find the total average run time for all movie genres
-    public void query10(){
+    public void query10(String dept){
         try{
-            state = connect.createStatement();
-            res = state.executeQuery("select  StaffID, StaffName, title, DepartmentName "+
+
+            preState = connect.prepareStatement("select  StaffID, StaffName, title, DepartmentName "+
                     "from Staffs "+
                     "natural join Belong "+
                     "natural join Movies" +
                     " natural join work " +
-                    "where departmentName = 'Writing' "+
+                    "where departmentName = ? "+
                     " and title in ( "+
                     " select title from Movies where revenue - Budget < 0)"+
-                    " order by title "
-            );
+                    " order by title ");
+
+            preState.setString(1,dept);
+            res = preState.executeQuery();
+
+
             System.out.println("StaffID"+ ", "+ "StaffName"+", "+"Title"+ ", "+ "DepartmentName");
             while (res.next()){
                 System.out.println(res.getInt(1)+ ", "+ res.getString(2)+ ", "+ res.getString(3)
