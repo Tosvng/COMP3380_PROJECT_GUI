@@ -363,9 +363,9 @@ public class MovieDAO {
                     "    )" +
                     ") "
             );
-            System.out.println("ActorID" + ", " + "ActorName"+ ", " + "Title");
+            System.out.println("GenreName");
             while (res.next()){
-                System.out.println(res.getInt(1)+ ", "+ res.getString(2)+ ", "+ res.getString(3));
+                System.out.println(res.getString(1));
 
             }
         }
