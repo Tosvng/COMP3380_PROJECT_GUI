@@ -35,14 +35,23 @@ public class Main {
                 m.showAll("genres");
             } else if (temp[0].equalsIgnoreCase("Companies")) {
                 m.showAll("Companies");
-            } else if (temp[0].equalsIgnoreCase("Production_Country")) {
-                m.showAll("location");
+            } else if (temp[0].equalsIgnoreCase("locations")) {
+                m.showLoc();
+            }
+            else if (temp[0].equalsIgnoreCase("staffs")) {
+                m.showAll("staffs");
             }
             //_________________QUERIES_____________________________
             else if(temp[0].equalsIgnoreCase("Q1")){
                 m.query1();
             }else if(temp[0].equalsIgnoreCase("Q2")){
-                m.query2(temp[1],temp[2]);
+
+                if(temp.length >= 3) {
+                    m.query2(temp[1], temp[2]);
+                }
+                else{
+                    System.out.println("Not enough argument for this command");
+                }
             }else if(temp[0].equalsIgnoreCase("Q3")){
                 m.query3();
             }
@@ -53,19 +62,39 @@ public class Main {
                 m.query5();
             }
             else if(temp[0].equalsIgnoreCase("Q6")){
-                m.query6(var);
+                if(temp.length >=2) {
+                    m.query6(var);
+                }
+                else{
+                    System.out.println("Not enough argument for this command");
+                }
             }
             else if(temp[0].equalsIgnoreCase("Q7")){
-                m.query7(var);
+                if(temp.length >=2) {
+                    m.query7(var);
+                }
+                else{
+                    System.out.println("Not enough argument for this command");
+                }
             }
             else if(temp[0].equalsIgnoreCase("Q8")){
-                m.query8(temp[1]);
+                if(temp.length >= 2) {
+                    m.query8(temp[1]);
+                }
+                else{
+                    System.out.println("Not enough argument for this command");
+                }
             }
             else if(temp[0].equalsIgnoreCase("Q9")){
                 m.query9();
             }
             else if(temp[0].equalsIgnoreCase("Q10")){
-                m.query10(temp[1]);
+                if(temp.length >= 2) {
+                    m.query10(temp[1]);
+                }
+                else{
+                    System.out.println("Not enough argument for this command");
+                }
             }
 
             else if(temp[0].equalsIgnoreCase("help")){

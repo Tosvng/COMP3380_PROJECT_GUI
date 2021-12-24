@@ -5,21 +5,21 @@ Movies - to see all movies
 Actors - to see all actors
 Characters - to see all characters
 Companies - to see all production companies
-Location - to see all production countries
+Locations - to see all production countries
 Genres - to see all genres
 Staffs - to see all staffs
 Departments - to see all departments
 
 
 Q1 - Find the 5 most profitable movies released in 1995
-Q2 country genre - Find all movies produced in 'country' and a 'genre'
+Q2 country genre - Find all movies produced in 'COUNTRY e.g, FR, US, UK' and a 'GENRE'
 Q3 - Find movies order by budget
 Q4 - Find movies where the movies lost money
 Q5 - Find movies order by revenue
-Q6 title- Find all actors and characters in a 'title'
-Q7 title - Find all actors who played more than 1 character in a 'title'
+Q6 title- Find all actors and characters in a 'TITLE'
+Q7 title - Find all actors who played more than 1 character in a 'TITLE'
 Q8 genre - Find companies produce the most 'genre' movies
 Q9 - Find the total average run time for all movie genres
-Q10 department - Find the staffs in 'department' for all movies that made a loss
+Q10 department - Find the staffs in 'DEPARTMENT' for all movies that made a loss
 
 Press q to quit

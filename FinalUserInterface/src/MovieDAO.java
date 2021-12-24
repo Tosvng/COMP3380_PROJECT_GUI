@@ -33,9 +33,6 @@ public class MovieDAO {
             }else if(entity.equalsIgnoreCase("characters")){//select all character
                 res = state.executeQuery("SELECT characterID,characterName FROM " +
                         "characters ORDER BY characterID ");
-            }else if(entity.equalsIgnoreCase("locations")){//select all location
-                res = state.executeQuery("SELECT countryName,country FROM " +
-                        "locations ORDER BY countryName ");
             }else if(entity.equalsIgnoreCase("companies")){//select all company
                 res = state.executeQuery("SELECT companyID,companyName FROM " +
                         "companies ORDER BY companyID ");
@@ -79,6 +76,23 @@ public class MovieDAO {
             }
         }
         catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void showLoc(){
+        try{
+            state = connect.createStatement();
+            res = state.executeQuery("SELECT countryName,countryID FROM " +
+                    "locations ORDER BY countryName ");
+
+            System.out.println("ID"+ ", "+ "Name");
+            while (res.next()){
+                System.out.println(res.getString(2)+ ", "+ res.getString(1));
+
+            }
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
     }
