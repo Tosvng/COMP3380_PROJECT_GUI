@@ -265,7 +265,7 @@ public class MovieDAO {
             preState.setString(1,genre);
             res = preState.executeQuery();
 
-            System.out.println("CompanyName"+", "+"numComedyMovies");
+            System.out.println("CompanyName"+", "+"numMovies");
             while (res.next()){
                 System.out.println(res.getString(1)+ ", "+ res.getInt(2));
 
@@ -324,6 +324,53 @@ public class MovieDAO {
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("All input should be text");
+        }
+    }
+
+    public  void query11(){
+        try {
+            state = connect.createStatement();
+            res = state.executeQuery("select Actorid, ActorName,Title from Actors NATURAL JOIN Cast NATURAL JOIN Movies " +
+                    " where MovieID in( " +
+                    " SELECT MovieID " +
+                    " from movies where revenue - budget > 0" +
+                    " order by (revenue - budget)-budget DESC " +
+                    " limit 1 " +
+                    " ) "
+            );
+            System.out.println("ActorID" + ", " + "ActorName"+ ", " + "Title");
+            while (res.next()){
+                System.out.println(res.getInt(1)+ ", "+ res.getString(2)+ ", "+ res.getString(3));
+
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public  void query12(){
+        try {
+            state = connect.createStatement();
+            res = state.executeQuery("select GenreName FROM Genres outerGenres where not EXISTS ( " +
+                    "    SELECT CompanyName FROM Companies WHERE CompanyName not in ( " +
+                    "    select CompanyName FROM " +
+                    "    Companies NATURAL JOIN Produced_by " +
+                    "    NATURAL JOIN Movies " +
+                    "    NATURAL JOIN Category " +
+                    "    NATURAL JOIN Genres innerGenre " +
+                    "    where innerGenre.GenreName = outerGenres.GenreName " +
+                    "    )" +
+                    ") "
+            );
+            System.out.println("ActorID" + ", " + "ActorName"+ ", " + "Title");
+            while (res.next()){
+                System.out.println(res.getInt(1)+ ", "+ res.getString(2)+ ", "+ res.getString(3));
+
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
     }
 

@@ -51,6 +51,8 @@ public class Main {
                 }
                 else{
                     System.out.println("Not enough argument for this command");
+                    System.out.println("Using Defaults:\nCountry -- FR\nGenre -- Comedy");
+                    m.query2("FR", "Comedy");
                 }
             }else if(temp[0].equalsIgnoreCase("Q3")){
                 m.query3();
@@ -67,6 +69,8 @@ public class Main {
                 }
                 else{
                     System.out.println("Not enough argument for this command");
+                    System.out.println("Using Defaults:\nTitle --Toy Story");
+                    m.query6("Toy Story");
                 }
             }
             else if(temp[0].equalsIgnoreCase("Q7")){
@@ -75,6 +79,8 @@ public class Main {
                 }
                 else{
                     System.out.println("Not enough argument for this command");
+                    System.out.println("Using Defaults:\nTitle --Toy Story");
+                    m.query7("Toy Story");
                 }
             }
             else if(temp[0].equalsIgnoreCase("Q8")){
@@ -83,6 +89,8 @@ public class Main {
                 }
                 else{
                     System.out.println("Not enough argument for this command");
+                    System.out.println("Using Defaults:\nGenre --Comedy");
+                    m.query8("Comedy");
                 }
             }
             else if(temp[0].equalsIgnoreCase("Q9")){
@@ -94,7 +102,15 @@ public class Main {
                 }
                 else{
                     System.out.println("Not enough argument for this command");
+                    System.out.println("Using Defaults:\nDepartment --Writing");
+                    m.query10("Writing");
                 }
+            }
+            else if(temp[0].equalsIgnoreCase("Q11")){
+                m.query11();
+            }
+            else if(temp[0].equalsIgnoreCase("Q12")){
+                m.query12();
             }
 
             else if(temp[0].equalsIgnoreCase("help")){

@@ -21,5 +21,7 @@ Q7 title - Find all actors who played more than 1 character in a 'TITLE'
 Q8 genre - Find companies produce the most 'genre' movies
 Q9 - Find the total average run time for all movie genres
 Q10 department - Find the staffs in 'DEPARTMENT' for all movies that made a loss
+Q11 - Find the actor that acted in the least expensive movie but had the most profit
+Q12 - List all the genres that has been produced by all production companies
 
 Press q to quit
